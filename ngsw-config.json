@@ -28,7 +28,7 @@
       ],
       "cacheConfig": {
         "maxAge": "6h",
-        "strategy": "freshness"
+        "strategy": "performance"
       }
     }]
 }
