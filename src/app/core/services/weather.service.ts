@@ -23,7 +23,7 @@ export class WeatherService {
   getCurrentConditions(zipcode: string): Observable<ConditionsAndZip>{
     let context = new HttpContext();
     context.set(CACHE_ACTIVATED, true);
-    return this.http.get<CurrentConditions>(`${WeatherService.URL}/weather?zip=${zipcode},fr&units=metric&APPID=${WeatherService.APPID}`,{context})
+    return this.http.get<CurrentConditions>(`${WeatherService.URL}/weather?zip=${zipcode},us&units=metric&APPID=${WeatherService.APPID}`,{context})
         .pipe(
             map(data =>({zip: zipcode, data}))
         );
@@ -33,7 +33,7 @@ export class WeatherService {
     let context = new HttpContext();
     context.set(CACHE_ACTIVATED, true);
     // Here we make a request to get the forecast data from the API. Note the use of backticks and an expression to insert the zipcode
-    return this.http.get<Forecast>(`${WeatherService.URL}/forecast/daily?zip=${zipcode},fr&units=metric&cnt=5&APPID=${WeatherService.APPID}`,{context});
+    return this.http.get<Forecast>(`${WeatherService.URL}/forecast/daily?zip=${zipcode},us&units=metric&cnt=5&APPID=${WeatherService.APPID}`,{context});
 
   }
 

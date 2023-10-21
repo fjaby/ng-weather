@@ -23,5 +23,7 @@ getTestBed().initTestEnvironment(
   BrowserDynamicTestingModule,
   platformBrowserDynamicTesting()
 );
+
+
 // Finally, start Karma to run the tests.
 __karma__.start();
