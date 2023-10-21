@@ -1,0 +1,8 @@
+<div class="well">
+    <h2>Cache configuration</h2>
+    <div class="options">
+        <span> time to live (seconds):</span>
+        <input type="number" [value]="timetoLiveValue" #ttl
+               (change)="setTimeToLive(ttl.value)">
+    </div>
+</div>

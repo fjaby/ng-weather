@@ -5,10 +5,17 @@ import {HttpResponse} from "@angular/common/http";
     providedIn: 'root'
 })
 export class CacheService {
-
-    timeToLive = signal<number>(720000)
+    private _timeToLive = signal<number>(720000)
 
     constructor() {
+    }
+
+    get timeToLiveValue() {
+        return this._timeToLive();
+    }
+
+    set timeToLiveValue(newVal: number) {
+        this._timeToLive.set(newVal);
     }
 
     request(url: string): HttpResponse<any> {
@@ -27,8 +34,12 @@ export class CacheService {
     }
 
     cache(url: string, response: HttpResponse<any>): void {
-        const expirationTime: number = new Date().getTime() + this.timeToLive();
-        const cachedData: { data, expiresAt, timetoLive } = {data: response, expiresAt: expirationTime, timetoLive: this.timeToLive()};
+        const expirationTime: number = new Date().getTime() + this._timeToLive();
+        const cachedData: { data, expiresAt, timetoLive } = {
+            data: response,
+            expiresAt: expirationTime,
+            timetoLive: this._timeToLive()
+        };
         localStorage.setItem(url, JSON.stringify(cachedData));
 
     }

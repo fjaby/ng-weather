@@ -1,8 +1,0 @@
-<div class="well">
-    <h2>Cache configuration</h2>
-    <div>
-        <span> time to live</span>
-        <input type="number" [value]="cacheService.timeToLive()" #val
-               (change)="cacheService.timeToLive.set(Number(val.value))">
-    </div>
-</div>

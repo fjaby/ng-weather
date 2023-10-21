@@ -5,3 +5,8 @@
     border-right: 5px solid transparent;
     border-top: 5px solid #f00;
 }
+
+.options{
+    display: flex;
+    gap: 10px;
+}

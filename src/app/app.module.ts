@@ -3,12 +3,12 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { ZipcodeEntryComponent } from './zipcode-entry/zipcode-entry.component';
-import {LocationService} from "./location.service";
-import { ForecastsListComponent } from './forecasts-list/forecasts-list.component';
-import {WeatherService} from "./weather.service";
-import { CurrentConditionsComponent } from './current-conditions/current-conditions.component';
-import { MainPageComponent } from './main-page/main-page.component';
+import { ZipcodeEntryComponent } from './features/zipcode-entry/zipcode-entry.component';
+import {LocationService} from "./core/services/location.service";
+import { ForecastsListComponent } from './features/forecasts-list/forecasts-list.component';
+import {WeatherService} from "./core/services/weather.service";
+import { CurrentConditionsComponent } from './features/current-conditions/current-conditions.component';
+import { MainPageComponent } from './features/main-page/main-page.component';
 import {RouterModule} from "@angular/router";
 import {routing} from "./app.routing";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
@@ -16,7 +16,12 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import {SharedModule} from "./shared/shared.module";
 import {HttpCacheInterceptor} from "./core/interceptors/HttpCacheInterceptor";
-import { CacheConfigurationComponent } from './cache-configuration/cache-configuration.component';
+import { CacheConfigurationComponent } from './features/cache-configuration/cache-configuration.component';
+import { StoreModule } from '@ngrx/store';
+import {LOCATION_FEATURE_KEY} from "./store/locations/locations.states";
+import {locationReducer} from "./store/locations/locations.reducer";
+import { EffectsModule } from '@ngrx/effects';
+import {LocationsEffects} from "./store/locations/locations.effects";
 
 @NgModule({
   declarations: [
@@ -34,9 +39,12 @@ import { CacheConfigurationComponent } from './cache-configuration/cache-configu
         RouterModule,
         routing,
         ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
-        SharedModule
+        SharedModule,
+        StoreModule.forRoot({[LOCATION_FEATURE_KEY]: locationReducer}),
+
+        EffectsModule.forRoot([LocationsEffects])
     ],
-  providers: [LocationService, WeatherService,
+  providers: [
       {
           provide: HTTP_INTERCEPTORS,
           useClass: HttpCacheInterceptor,
