@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {WeatherService} from '../../core/services/weather.service';
 import {ActivatedRoute} from '@angular/router';
 import {Forecast} from './forecast.type';
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-forecasts-list',
@@ -12,13 +13,12 @@ import {Forecast} from './forecast.type';
 export class ForecastsListComponent {
 
   zipcode: string;
-  forecast: Forecast;
+  forecast$: Observable<Forecast>;
 
   constructor(protected weatherService: WeatherService, route : ActivatedRoute) {
     route.params.subscribe(params => {
       this.zipcode = params['zipcode'];
-      weatherService.getForecast(this.zipcode)
-        .subscribe(data => this.forecast = data);
+      this.forecast$ = weatherService.getForecast(this.zipcode);
     });
   }
 }

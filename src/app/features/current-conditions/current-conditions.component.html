@@ -1,5 +1,7 @@
 <app-tabs *ngIf="currentConditionsByZip()">
-    <app-tab *ngFor="let location of currentConditionsByZip(); let first = first" tabTitle="{{location.data.name}} ({{location.zip}})" (closeTabEvent)="locationService.removeLocation(location.zip)">
+    <app-tab *ngFor="let location of currentConditionsByZip(); let first = first"
+             tabTitle="{{location.data.name}} ({{location.zip}})"
+             (closeTabEvent)="removeLocation(location.zip)">
         <div>
             <div (click)="showForecast(location.zip)"
                  class="well flex">

@@ -45,6 +45,7 @@ import {LocationsEffects} from "./store/locations/locations.effects";
         EffectsModule.forRoot([LocationsEffects])
     ],
   providers: [
+      LocationService,
       {
           provide: HTTP_INTERCEPTORS,
           useClass: HttpCacheInterceptor,

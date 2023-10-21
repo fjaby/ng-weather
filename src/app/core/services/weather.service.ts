@@ -3,7 +3,7 @@ import {Observable} from 'rxjs';
 
 import {HttpClient, HttpContext} from '@angular/common/http';
 import {CurrentConditions} from '../../features/current-conditions/current-conditions.type';
-import {ConditionsAndZip} from '../../conditions-and-zip.type';
+import {ConditionsAndZip} from '../../store/conditions-and-zip.type';
 import {Forecast} from '../../features/forecasts-list/forecast.type';
 import {error} from "protractor";
 import {CACHE_ACTIVATED} from "../interceptors/HttpCacheInterceptor";
@@ -23,7 +23,7 @@ export class WeatherService {
   getCurrentConditions(zipcode: string): Observable<ConditionsAndZip>{
     let context = new HttpContext();
     context.set(CACHE_ACTIVATED, true);
-    return this.http.get<CurrentConditions>(`${WeatherService.URL}/weather?zip=${zipcode},us&units=imperial&APPID=${WeatherService.APPID}`,{context})
+    return this.http.get<CurrentConditions>(`${WeatherService.URL}/weather?zip=${zipcode},fr&units=metric&APPID=${WeatherService.APPID}`,{context})
         .pipe(
             map(data =>({zip: zipcode, data}))
         );
@@ -33,7 +33,7 @@ export class WeatherService {
     let context = new HttpContext();
     context.set(CACHE_ACTIVATED, true);
     // Here we make a request to get the forecast data from the API. Note the use of backticks and an expression to insert the zipcode
-    return this.http.get<Forecast>(`${WeatherService.URL}/forecast/daily?zip=${zipcode},us&units=imperial&cnt=5&APPID=${WeatherService.APPID}`,{context});
+    return this.http.get<Forecast>(`${WeatherService.URL}/forecast/daily?zip=${zipcode},fr&units=metric&cnt=5&APPID=${WeatherService.APPID}`,{context});
 
   }
 

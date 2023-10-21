@@ -23,7 +23,7 @@ export const locationReducer = createReducer<LocationState, Action>(initialState
         on(removeLocation, (state, props) => {
             return {
                 ...state,
-                location: [...state.locations.filter(location => location.zip !== props.zipcode)]
+                locations: [...state.locations.filter(location => location.zip !== props.zipcode)]
             }
         })
     )

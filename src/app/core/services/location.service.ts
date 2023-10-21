@@ -4,9 +4,7 @@ import {addLocation, removeLocation} from "../../store/locations/locations.actio
 
 export const LOCATIONS: string = "locations";
 
-@Injectable({
-    providedIn: "root"
-})
+@Injectable()
 export class LocationService {
 
     locations: string[] = [];
@@ -15,8 +13,9 @@ export class LocationService {
         let locString = localStorage.getItem(LOCATIONS);
         if (locString)
             this.locations = JSON.parse(locString);
-        for (let loc of this.locations)
+        for (let loc of this.locations) {
             this.store.dispatch(addLocation({zipcode: loc}))
+        }
     }
 
     addLocation(zipcode: string) {
