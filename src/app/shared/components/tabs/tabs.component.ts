@@ -7,24 +7,20 @@ import {
     QueryList
 } from '@angular/core';
 import {TabComponent} from "../tab/tab.component";
-import {Subscription} from "rxjs";
+import {identity, Subscription} from "rxjs";
 
 @Component({
     selector: 'app-tabs',
     templateUrl: './tabs.component.html',
     styleUrls: ['./tabs.component.css'],
-    changeDetection:ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TabsComponent implements AfterContentInit, OnDestroy {
-
-
     @ContentChildren(TabComponent)
     tabs: QueryList<TabComponent>;
-
-
     private _tabsSubscription = Subscription.EMPTY;
 
-    constructor(private cdRef:ChangeDetectorRef) {
+    constructor(private cdRef: ChangeDetectorRef) {
     }
 
     ngAfterContentInit(): void {
@@ -33,7 +29,6 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
         if (activeTabs.length === 0 && this.tabs.length !== 0) {
             this.selectTab(this.tabs.first);
         }
-
         this._tabsSubscription = this.tabs.changes.subscribe(() => {
             if (this.tabs.length !== 0) {
                 this.selectTab(this.tabs.last)
@@ -53,7 +48,7 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        if(this._tabsSubscription) {
+        if (this._tabsSubscription) {
             this._tabsSubscription.unsubscribe();
             this._tabsSubscription = null;
         }
@@ -62,4 +57,8 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
     closeTab(tab: TabComponent) {
         tab.close();
     }
+
+    trackbyTitle(index: number, item: TabComponent) {
+        return item.title
+    };
 }

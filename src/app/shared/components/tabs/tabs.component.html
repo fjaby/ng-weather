@@ -1,9 +1,11 @@
-<ul class="nav nav-tabs">
-    <li *ngFor="let tab of tabs" [class.active]="tab.active">
-        <div class="tab-header">
-            <a (click)="selectTab(tab)" href="#">{{tab.title}}</a>
-            <button (click)="closeTab(tab)" class="close">&times;</button>
-        </div>
-    </li>
-</ul>
+<div  class="tab-container">
+    <ul class="nav nav-tabs tabs cleafix">
+        <li *ngFor="let tab of tabs; trackBy:trackbyTitle" [ngClass]="{'tab':true,'active':tab.active}">
+            <div class="tab-header">
+                <a (click)="selectTab(tab)" href="#">{{tab.title}}</a>
+                <button (click)="closeTab(tab)" class="close">&times;</button>
+            </div>
+        </li>
+    </ul>
+</div>
 <ng-content></ng-content>
