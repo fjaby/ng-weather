@@ -10,7 +10,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "cypress:run": "cypress run",
+    "build:git-page": "ng build --output-path docs --base-href /ng-weather/"
   },
   "private": true,
   "dependencies": {

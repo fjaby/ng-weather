@@ -30,7 +30,7 @@ export class HttpCacheInterceptor implements HttpInterceptor {
         // Object.assign(cacheResponse, this.cacheServices.request(req.url));
 
         if (cacheResponse) {
-            return of(cacheResponse);
+            return of(new HttpResponse({body:cacheResponse.body}))
         }
         return next.handle(req).pipe(
             tap((response: HttpEvent<any>) => {

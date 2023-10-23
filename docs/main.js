@@ -192,7 +192,9 @@ let HttpCacheInterceptor = class HttpCacheInterceptor {
     const cacheResponse = this.cacheServices.request(req.url);
     // Object.assign(cacheResponse, this.cacheServices.request(req.url));
     if (cacheResponse) {
-      return (0,rxjs__WEBPACK_IMPORTED_MODULE_3__.of)(cacheResponse);
+      return (0,rxjs__WEBPACK_IMPORTED_MODULE_3__.of)(new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpResponse({
+        body: cacheResponse.body
+      }));
     }
     return next.handle(req).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.tap)(response => {
       if (response instanceof _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpResponse) {
