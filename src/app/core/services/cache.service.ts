@@ -1,5 +1,4 @@
 import {Injectable, signal} from '@angular/core';
-import {HttpResponse} from "@angular/common/http";
 
 @Injectable({
     providedIn: 'root'
@@ -18,29 +17,29 @@ export class CacheService {
         this._timeToLive.set(newVal);
     }
 
-    request(url: string): HttpResponse<any> {
-        const cachedData: string = localStorage.getItem(url);
-        const response: HttpResponse<any> = new HttpResponse();
+    // get the data associated to the key.
+    request(key: string): any {
+        const cachedData: string = localStorage.getItem(key);
         if (cachedData) {
             const parsedData = JSON.parse(cachedData);
             if (parsedData.expiresAt >= new Date().getTime()) {
-                Object.assign(response, parsedData.data)
-                return response;
+                return parsedData.data;
             } else {
-                this.remove(url);
+                this.remove(key);
             }
         }
         return null;
     }
 
-    cache(url: string, response: HttpResponse<any>): void {
+    // Save data on local storage with a key.
+    cache(key: string, data: any): void {
         const expirationTime: number = new Date().getTime() + this._timeToLive();
         const cachedData: { data, expiresAt, timetoLive } = {
-            data: response,
+            data: data,
             expiresAt: expirationTime,
             timetoLive: this._timeToLive()
         };
-        localStorage.setItem(url, JSON.stringify(cachedData));
+        localStorage.setItem(key, JSON.stringify(cachedData));
 
     }
 

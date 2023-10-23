@@ -12,3 +12,5 @@ export const addLocationFailure = createAction(
     'Add Location Failure',
     props<{ error: HttpErrorResponse | Error }>()
 )
+
+export const removeLocationSuccess = createAction('remove Location Success');

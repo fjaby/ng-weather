@@ -4,13 +4,14 @@ import {addLocation} from "../../store/locations/locations.actions";
 
 export const LOCATIONS: string = "locations";
 
-@Injectable()
+@Injectable({
+    providedIn:'root'
+})
 export class LocationService {
 
     locations: string[] = []
 
     constructor(private store: Store) {
-
     }
 
     loadLocation(){
