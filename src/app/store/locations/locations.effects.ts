@@ -2,22 +2,33 @@ import {Injectable} from "@angular/core";
 import {WeatherService} from "../../core/services/weather.service";
 import * as fromActions from "./locations.actions";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
-import {debounceTime, exhaustMap, map, switchMap, tap} from "rxjs/operators";
+import {concatMap, map, switchMap, tap} from "rxjs/operators";
 import {ConditionsAndZip} from "../conditions-and-zip.type";
 import {LocationService} from "../../core/services/location.service";
+
 @Injectable()
 export class LocationsEffects {
 
-    constructor(private actions$: Actions,private weatherService: WeatherService,private locationService:LocationService) {
-    }
-
-    addLocation$ = createEffect(()=>
+    addLocation$ = createEffect(() =>
         this.actions$.pipe(
             ofType(fromActions.addLocation),
-            switchMap(value => this.weatherService.getCurrentConditions(value.zipcode) ),
-            tap()
-            map((value:ConditionsAndZip) =>  fromActions.addLocationSuccess({location: value}))
+            concatMap(value => this.weatherService.getCurrentConditions(value.zipcode)),
+            map((value: ConditionsAndZip) => {
+                this.locationService.addLocation(value.zip);
+                return fromActions.addLocationSuccess({location: value});
+            })
         )
     )
+    removeLocation$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(fromActions.removeLocation),
+            tap(value => {
+                this.locationService.removeLocation(value.zipcode)
+            })
+        )
+    )
+
+    constructor(private actions$: Actions, private weatherService: WeatherService, private locationService: LocationService) {
+    }
 
 }
