@@ -26,8 +26,8 @@ export class HttpCacheInterceptor implements HttpInterceptor {
             return next.handle(req);
         }
 
-        const cacheResponse: HttpResponse<any> = new HttpResponse<any>();
-        Object.assign(cacheResponse, this.cacheServices.request(req.url));
+        const cacheResponse: HttpResponse<any> = this.cacheServices.request(req.url);
+        // Object.assign(cacheResponse, this.cacheServices.request(req.url));
 
         if (cacheResponse) {
             return of(cacheResponse);
