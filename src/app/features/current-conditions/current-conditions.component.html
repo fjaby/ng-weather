@@ -3,8 +3,7 @@
              tabTitle="{{location.data.name}} ({{location.zip}})"
              (closeTabEvent)="removeLocation(location.zip)">
         <div>
-            <div (click)="showForecast(location.zip)"
-                 class="well flex">
+            <div class="well flex">
                 <div>
                     <h4>Current conditions: {{location.data.weather[0].main}}</h4>
                     <h4>Temperatures today:</h4>

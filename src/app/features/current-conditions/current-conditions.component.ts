@@ -20,9 +20,6 @@ export class CurrentConditionsComponent implements OnInit{
   private locationService = inject(LocationService);
   protected currentConditionsByZip: Signal<ReadonlyArray<ConditionsAndZip>> = this.store.selectSignal(locationsSelector);
 
-  showForecast(zipcode : string){
-    this.router.navigate(['/forecast', zipcode])
-  }
 
   removeLocation(zipcode: string){
     this.store.dispatch(removeLocation({zipcode}));

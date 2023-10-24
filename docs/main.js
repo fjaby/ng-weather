@@ -501,9 +501,6 @@ let CurrentConditionsComponent = class CurrentConditionsComponent {
     this.locationService = (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.inject)(_core_services_location_service__WEBPACK_IMPORTED_MODULE_3__.LocationService);
     this.currentConditionsByZip = this.store.selectSignal(_store_locations_locations_selector__WEBPACK_IMPORTED_MODULE_4__.locationsSelector);
   }
-  showForecast(zipcode) {
-    this.router.navigate(['/forecast', zipcode]);
-  }
   removeLocation(zipcode) {
     this.store.dispatch((0,_store_locations_locations_actions__WEBPACK_IMPORTED_MODULE_5__.removeLocation)({
       zipcode
@@ -1575,7 +1572,7 @@ module.exports = "<div class=\"well\">\r\n    <h2>Cache configuration</h2>\r\n  
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<app-tabs *ngIf=\"currentConditionsByZip()\">\r\n    <app-tab *ngFor=\"let location of currentConditionsByZip(); let first = first\"\r\n             tabTitle=\"{{location.data.name}} ({{location.zip}})\"\r\n             (closeTabEvent)=\"removeLocation(location.zip)\">\r\n        <div>\r\n            <div (click)=\"showForecast(location.zip)\"\r\n                 class=\"well flex\">\r\n                <div>\r\n                    <h4>Current conditions: {{location.data.weather[0].main}}</h4>\r\n                    <h4>Temperatures today:</h4>\r\n                    <p>\r\n                        Current {{location.data.main.temp | number:'.0-0'}}\r\n                        - Max {{location.data.main.temp_max | number:'.0-0'}}\r\n                        - Min {{location.data.main.temp_min | number:'.0-0'}}\r\n                    </p>\r\n                    <p>\r\n                        <a [routerLink]=\"['/forecast', location.zip]\">Show 5-day forecast for {{location.data.name}}</a>\r\n                    </p>\r\n                </div>\r\n                <div>\r\n                    <img [src]=\"weatherService.getWeatherIcon(location.data.weather[0].id)\">\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </app-tab>\r\n</app-tabs>\r\n";
+module.exports = "<app-tabs *ngIf=\"currentConditionsByZip()\">\r\n    <app-tab *ngFor=\"let location of currentConditionsByZip(); let first = first\"\r\n             tabTitle=\"{{location.data.name}} ({{location.zip}})\"\r\n             (closeTabEvent)=\"removeLocation(location.zip)\">\r\n        <div>\r\n            <div class=\"well flex\">\r\n                <div>\r\n                    <h4>Current conditions: {{location.data.weather[0].main}}</h4>\r\n                    <h4>Temperatures today:</h4>\r\n                    <p>\r\n                        Current {{location.data.main.temp | number:'.0-0'}}\r\n                        - Max {{location.data.main.temp_max | number:'.0-0'}}\r\n                        - Min {{location.data.main.temp_min | number:'.0-0'}}\r\n                    </p>\r\n                    <p>\r\n                        <a [routerLink]=\"['/forecast', location.zip]\">Show 5-day forecast for {{location.data.name}}</a>\r\n                    </p>\r\n                </div>\r\n                <div>\r\n                    <img [src]=\"weatherService.getWeatherIcon(location.data.weather[0].id)\">\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </app-tab>\r\n</app-tabs>\r\n";
 
 /***/ }),
 
