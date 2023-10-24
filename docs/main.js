@@ -380,7 +380,7 @@ let WeatherService = WeatherService_1 = class WeatherService {
   getCurrentConditions(zipcode) {
     let context = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpContext();
     context.set(_interceptors_HttpCacheInterceptor__WEBPACK_IMPORTED_MODULE_0__.CACHE_ACTIVATED, true);
-    return this.http.get(`${WeatherService_1.URL}/weather?zip=${zipcode},us&units=metric&APPID=${WeatherService_1.APPID}`, {
+    return this.http.get(`${WeatherService_1.URL}/weather?zip=${zipcode},us&units=imperial&APPID=${WeatherService_1.APPID}`, {
       context
     }).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_2__.map)(data => ({
       zip: zipcode,
@@ -391,7 +391,7 @@ let WeatherService = WeatherService_1 = class WeatherService {
     let context = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpContext();
     context.set(_interceptors_HttpCacheInterceptor__WEBPACK_IMPORTED_MODULE_0__.CACHE_ACTIVATED, true);
     // Here we make a request to get the forecast data from the API. Note the use of backticks and an expression to insert the zipcode
-    return this.http.get(`${WeatherService_1.URL}/forecast/daily?zip=${zipcode},us&units=metric&cnt=5&APPID=${WeatherService_1.APPID}`, {
+    return this.http.get(`${WeatherService_1.URL}/forecast/daily?zip=${zipcode},us&units=imperial&cnt=5&APPID=${WeatherService_1.APPID}`, {
       context
     });
   }
