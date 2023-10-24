@@ -2,9 +2,11 @@ import {Injectable} from "@angular/core";
 import {WeatherService} from "../../core/services/weather.service";
 import * as fromActions from "./locations.actions";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
-import {concatMap, map, tap} from "rxjs/operators";
+import {catchError, concatMap, map, tap} from "rxjs/operators";
 import {ConditionsAndZip} from "../conditions-and-zip.type";
 import {LocationService} from "../../core/services/location.service";
+import {SnackbarService} from "../../shared/snackbar/snackbar.service";
+import {of} from "rxjs";
 
 @Injectable()
 export class LocationsEffects {
@@ -16,6 +18,13 @@ export class LocationsEffects {
             map((value: ConditionsAndZip) => {
                 this.locationService.addLocation(value.zip);
                 return fromActions.addLocationSuccess({location: value});
+            }),
+            catchError((err, caught) => {
+                this.snackbarService.show("Please enter a valid 5-digit ZIP code or make sure the ZIP code field is not empty.","error")
+                return of({
+                    type: fromActions.addLocationFailure().type,
+                    payload:{err}
+                })
             })
         )
     );
@@ -29,7 +38,7 @@ export class LocationsEffects {
         )
     );
 
-    constructor(private actions$: Actions, private weatherService: WeatherService, private locationService: LocationService) {
+    constructor(private actions$: Actions, private weatherService: WeatherService, private locationService: LocationService, private snackbarService: SnackbarService) {
     }
 
 }

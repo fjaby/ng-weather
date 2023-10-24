@@ -9,8 +9,7 @@ export const addLocationSuccess = createAction(
     props<{ location: ConditionsAndZip }>()
 )
 export const addLocationFailure = createAction(
-    'Add Location Failure',
-    props<{ error: HttpErrorResponse | Error }>()
+    'Add Location Failure'
 )
 
 export const removeLocationSuccess = createAction('remove Location Success');

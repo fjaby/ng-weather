@@ -1,5 +1,5 @@
 <div  class="tab-container">
-    <ul class="nav nav-tabs tabs cleafix">
+    <ul class="nav nav-tabs tabs clearfix">
         <li *ngFor="let tab of tabs; trackBy:trackbyTitle" [ngClass]="{'tab':true,'active':tab.active}">
             <div class="tab-header">
                 <a (click)="selectTab(tab)" href="#">{{tab.title}}</a>
@@ -8,4 +8,3 @@
         </li>
     </ul>
 </div>
-<ng-content></ng-content>

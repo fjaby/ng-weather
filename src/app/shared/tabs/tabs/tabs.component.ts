@@ -58,7 +58,5 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
         tab.close();
     }
 
-    trackbyTitle(index: number, item: TabComponent) {
-        return item.title
-    };
+
 }
