@@ -654,10 +654,269 @@ ZipcodeEntryComponent = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_3_
 
 /***/ }),
 
-/***/ 9988:
-/*!********************************************************!*\
-  !*** ./src/app/shared/components/tab/tab.component.ts ***!
-  \********************************************************/
+/***/ 6208:
+/*!*****************************************!*\
+  !*** ./src/app/shared/shared.module.ts ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   SharedModule: () => (/* binding */ SharedModule)
+/* harmony export */ });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 1699);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ 6575);
+/* harmony import */ var _tabs_tabs_tabs_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./tabs/tabs/tabs.component */ 7070);
+/* harmony import */ var _tabs_tab_tab_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tabs/tab/tab.component */ 7842);
+/* harmony import */ var _snackbar_snackbar_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./snackbar/snackbar.component */ 4187);
+/* harmony import */ var _tabs_tab_header_tab_header_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./tabs/tab-header/tab-header.component */ 2642);
+var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
+  var c = arguments.length,
+    r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+    d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+
+let SharedModule = class SharedModule {};
+SharedModule = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.NgModule)({
+  declarations: [_tabs_tabs_tabs_component__WEBPACK_IMPORTED_MODULE_0__.TabsComponent, _tabs_tab_tab_component__WEBPACK_IMPORTED_MODULE_1__.TabComponent, _snackbar_snackbar_component__WEBPACK_IMPORTED_MODULE_2__.SnackbarComponent, _tabs_tab_header_tab_header_component__WEBPACK_IMPORTED_MODULE_3__.TabHeaderComponent],
+  exports: [_tabs_tabs_tabs_component__WEBPACK_IMPORTED_MODULE_0__.TabsComponent, _tabs_tab_tab_component__WEBPACK_IMPORTED_MODULE_1__.TabComponent, _snackbar_snackbar_component__WEBPACK_IMPORTED_MODULE_2__.SnackbarComponent],
+  imports: [_angular_common__WEBPACK_IMPORTED_MODULE_5__.CommonModule]
+})], SharedModule);
+
+
+/***/ }),
+
+/***/ 4187:
+/*!*******************************************************!*\
+  !*** ./src/app/shared/snackbar/snackbar.component.ts ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   SnackbarComponent: () => (/* binding */ SnackbarComponent)
+/* harmony export */ });
+/* harmony import */ var _snackbar_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./snackbar.component.html?ngResource */ 2174);
+/* harmony import */ var _snackbar_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./snackbar.component.css?ngResource */ 9386);
+/* harmony import */ var _snackbar_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_snackbar_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 1699);
+/* harmony import */ var _snackbar_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./snackbar.service */ 5652);
+var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
+  var c = arguments.length,
+    r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+    d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+let SnackbarComponent = class SnackbarComponent {
+  constructor(snackbarService) {
+    this.snackbarService = snackbarService;
+    this.show = false;
+    this.message = '';
+    this.type = 'success';
+  }
+  ngOnInit() {
+    this.snackbarSubscription = this.snackbarService.snackbarState.subscribe(state => {
+      if (state.type) {
+        this.type = state.type;
+      } else {
+        this.type = 'success';
+      }
+      this.message = state.message;
+      this.show = state.show;
+      setTimeout(() => {
+        this.show = false;
+      }, 3000);
+    });
+  }
+  ngOnDestroy() {
+    this.snackbarSubscription.unsubscribe();
+  }
+  static #_ = this.ctorParameters = () => [{
+    type: _snackbar_service__WEBPACK_IMPORTED_MODULE_2__.SnackbarService
+  }];
+};
+SnackbarComponent = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Component)({
+  selector: 'app-snackbar',
+  template: _snackbar_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
+  styles: [(_snackbar_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1___default())]
+})], SnackbarComponent);
+
+
+/***/ }),
+
+/***/ 5652:
+/*!*****************************************************!*\
+  !*** ./src/app/shared/snackbar/snackbar.service.ts ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   SnackbarService: () => (/* binding */ SnackbarService)
+/* harmony export */ });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 1699);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ 2484);
+var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
+  var c = arguments.length,
+    r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+    d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+let SnackbarService = class SnackbarService {
+  constructor() {
+    this.snackbarSubject = new rxjs__WEBPACK_IMPORTED_MODULE_0__.Subject();
+    this.snackbarState = this.snackbarSubject.asObservable();
+  }
+  show(message, type) {
+    this.snackbarSubject.next({
+      show: true,
+      message,
+      type
+    });
+  }
+  static #_ = this.ctorParameters = () => [];
+};
+SnackbarService = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_1__.Injectable)({
+  providedIn: 'root'
+})], SnackbarService);
+
+
+/***/ }),
+
+/***/ 2642:
+/*!****************************************************************!*\
+  !*** ./src/app/shared/tabs/tab-header/tab-header.component.ts ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   TabHeaderComponent: () => (/* binding */ TabHeaderComponent)
+/* harmony export */ });
+/* harmony import */ var _tab_header_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./tab-header.component.html?ngResource */ 3895);
+/* harmony import */ var _tab_header_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tab-header.component.css?ngResource */ 2145);
+/* harmony import */ var _tab_header_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_tab_header_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 1699);
+var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
+  var c = arguments.length,
+    r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+    d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+let TabHeaderComponent = class TabHeaderComponent {
+  constructor(cd) {
+    this.cd = cd;
+    this.select = new _angular_core__WEBPACK_IMPORTED_MODULE_2__.EventEmitter();
+    this.close = new _angular_core__WEBPACK_IMPORTED_MODULE_2__.EventEmitter();
+    this.isOverflowed = false;
+    this.scrollPosition = 0;
+  }
+  onResize(event) {
+    this.checkOverflow();
+  }
+  ngAfterViewInit() {
+    this.checkOverflow();
+  }
+  selectTab(tab) {
+    this.select.emit(tab);
+  }
+  closeTab(tab) {
+    this.close.emit(tab);
+  }
+  trackbyTitle(index, item) {
+    return item.title;
+  }
+  checkOverflow() {
+    const container = this.itemListContainer.nativeElement;
+    const list = this.itemList.nativeElement;
+    this.isOverflowed = list.scrollWidth > container.clientWidth && list.scrollWidth !== this.scrollPosition + container.clientWidth;
+    this.cd.detectChanges();
+  }
+  scrollNext() {
+    const container = this.itemListContainer.nativeElement;
+    const list = this.itemList.nativeElement;
+    this.scrollPosition += container.clientWidth;
+    if (this.scrollPosition > list.scrollWidth - container.clientWidth) {
+      this.scrollPosition = list.scrollWidth - container.clientWidth;
+    }
+    this.checkOverflow();
+    list.style.transform = `translateX(-${this.scrollPosition}px)`;
+  }
+  scrollPrev() {
+    this.scrollPosition -= this.itemListContainer.nativeElement.clientWidth;
+    if (this.scrollPosition < 0) {
+      this.scrollPosition = 0;
+    }
+    this.checkOverflow();
+    this.itemList.nativeElement.style.transform = `translateX(-${this.scrollPosition}px)`;
+  }
+  static #_ = this.ctorParameters = () => [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.ChangeDetectorRef
+  }];
+  static #_2 = this.propDecorators = {
+    itemListContainer: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.ViewChild,
+      args: ['itemListContainer']
+    }],
+    itemList: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.ViewChild,
+      args: ['itemList']
+    }],
+    select: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Output
+    }],
+    close: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Output
+    }],
+    tabs: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input
+    }],
+    onResize: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.HostListener,
+      args: ['window:resize', ['$event']]
+    }]
+  };
+};
+TabHeaderComponent = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Component)({
+  selector: 'app-tab-header',
+  template: _tab_header_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
+  host: {
+    "[style.display]": "'flex'"
+  },
+  changeDetection: _angular_core__WEBPACK_IMPORTED_MODULE_2__.ChangeDetectionStrategy.OnPush,
+  styles: [(_tab_header_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1___default())]
+})], TabHeaderComponent);
+
+
+/***/ }),
+
+/***/ 7842:
+/*!**************************************************!*\
+  !*** ./src/app/shared/tabs/tab/tab.component.ts ***!
+  \**************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -665,8 +924,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   TabComponent: () => (/* binding */ TabComponent)
 /* harmony export */ });
-/* harmony import */ var _tab_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./tab.component.html?ngResource */ 6329);
-/* harmony import */ var _tab_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tab.component.css?ngResource */ 5154);
+/* harmony import */ var _tab_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./tab.component.html?ngResource */ 9788);
+/* harmony import */ var _tab_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tab.component.css?ngResource */ 1206);
 /* harmony import */ var _tab_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_tab_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 1699);
 var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
@@ -721,10 +980,10 @@ TabComponent = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Compone
 
 /***/ }),
 
-/***/ 8425:
-/*!**********************************************************!*\
-  !*** ./src/app/shared/components/tabs/tabs.component.ts ***!
-  \**********************************************************/
+/***/ 7070:
+/*!****************************************************!*\
+  !*** ./src/app/shared/tabs/tabs/tabs.component.ts ***!
+  \****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -732,11 +991,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   TabsComponent: () => (/* binding */ TabsComponent)
 /* harmony export */ });
-/* harmony import */ var _tabs_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./tabs.component.html?ngResource */ 8602);
-/* harmony import */ var _tabs_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tabs.component.css?ngResource */ 1245);
+/* harmony import */ var _tabs_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./tabs.component.html?ngResource */ 46);
+/* harmony import */ var _tabs_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tabs.component.css?ngResource */ 6033);
 /* harmony import */ var _tabs_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_tabs_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 1699);
-/* harmony import */ var _tab_tab_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../tab/tab.component */ 9988);
+/* harmony import */ var _tab_tab_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../tab/tab.component */ 7842);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 4614);
 var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
   var c = arguments.length,
@@ -785,9 +1044,6 @@ let TabsComponent = class TabsComponent {
   closeTab(tab) {
     tab.close();
   }
-  trackbyTitle(index, item) {
-    return item.title;
-  }
   static #_ = this.ctorParameters = () => [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.ChangeDetectorRef
   }];
@@ -804,79 +1060,6 @@ TabsComponent = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Compon
   changeDetection: _angular_core__WEBPACK_IMPORTED_MODULE_4__.ChangeDetectionStrategy.OnPush,
   styles: [(_tabs_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1___default())]
 })], TabsComponent);
-
-
-/***/ }),
-
-/***/ 829:
-/*!**********************************************************!*\
-  !*** ./src/app/shared/components/test/test.component.ts ***!
-  \**********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   TestComponent: () => (/* binding */ TestComponent)
-/* harmony export */ });
-/* harmony import */ var _test_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./test.component.html?ngResource */ 1488);
-/* harmony import */ var _test_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./test.component.css?ngResource */ 425);
-/* harmony import */ var _test_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_test_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 1699);
-var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
-  var c = arguments.length,
-    r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
-    d;
-  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-  return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-
-let TestComponent = class TestComponent {};
-TestComponent = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Component)({
-  selector: 'app-test',
-  template: _test_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
-  styles: [(_test_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1___default())]
-})], TestComponent);
-
-
-/***/ }),
-
-/***/ 6208:
-/*!*****************************************!*\
-  !*** ./src/app/shared/shared.module.ts ***!
-  \*****************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   SharedModule: () => (/* binding */ SharedModule)
-/* harmony export */ });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 1699);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ 6575);
-/* harmony import */ var _components_tabs_tabs_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/tabs/tabs.component */ 8425);
-/* harmony import */ var _components_tab_tab_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/tab/tab.component */ 9988);
-/* harmony import */ var _components_test_test_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/test/test.component */ 829);
-var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
-  var c = arguments.length,
-    r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
-    d;
-  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-  return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-
-
-
-let SharedModule = class SharedModule {};
-SharedModule = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.NgModule)({
-  declarations: [_components_tabs_tabs_component__WEBPACK_IMPORTED_MODULE_0__.TabsComponent, _components_tab_tab_component__WEBPACK_IMPORTED_MODULE_1__.TabComponent, _components_test_test_component__WEBPACK_IMPORTED_MODULE_2__.TestComponent],
-  exports: [_components_tabs_tabs_component__WEBPACK_IMPORTED_MODULE_0__.TabsComponent, _components_tab_tab_component__WEBPACK_IMPORTED_MODULE_1__.TabComponent],
-  imports: [_angular_common__WEBPACK_IMPORTED_MODULE_4__.CommonModule]
-})], SharedModule);
 
 
 /***/ }),
@@ -901,7 +1084,7 @@ __webpack_require__.r(__webpack_exports__);
 const removeLocation = (0,_ngrx_store__WEBPACK_IMPORTED_MODULE_0__.createAction)('remove Location', (0,_ngrx_store__WEBPACK_IMPORTED_MODULE_0__.props)());
 const addLocation = (0,_ngrx_store__WEBPACK_IMPORTED_MODULE_0__.createAction)('Add Location', (0,_ngrx_store__WEBPACK_IMPORTED_MODULE_0__.props)());
 const addLocationSuccess = (0,_ngrx_store__WEBPACK_IMPORTED_MODULE_0__.createAction)('Add Location Success', (0,_ngrx_store__WEBPACK_IMPORTED_MODULE_0__.props)());
-const addLocationFailure = (0,_ngrx_store__WEBPACK_IMPORTED_MODULE_0__.createAction)('Add Location Failure', (0,_ngrx_store__WEBPACK_IMPORTED_MODULE_0__.props)());
+const addLocationFailure = (0,_ngrx_store__WEBPACK_IMPORTED_MODULE_0__.createAction)('Add Location Failure');
 const removeLocationSuccess = (0,_ngrx_store__WEBPACK_IMPORTED_MODULE_0__.createAction)('remove Location Success');
 
 /***/ }),
@@ -917,14 +1100,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   LocationsEffects: () => (/* binding */ LocationsEffects)
 /* harmony export */ });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 1699);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 1699);
 /* harmony import */ var _core_services_weather_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../core/services/weather.service */ 4323);
 /* harmony import */ var _locations_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./locations.actions */ 5131);
-/* harmony import */ var _ngrx_effects__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ngrx/effects */ 1575);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 7293);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ 7422);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ 5746);
+/* harmony import */ var _ngrx_effects__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ngrx/effects */ 1575);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ 7293);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ 7422);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs/operators */ 8175);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! rxjs/operators */ 5746);
 /* harmony import */ var _core_services_location_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../core/services/location.service */ 4107);
+/* harmony import */ var _shared_snackbar_snackbar_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../shared/snackbar/snackbar.service */ 5652);
 var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
   var c = arguments.length,
     r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
@@ -938,30 +1123,37 @@ var __decorate = undefined && undefined.__decorate || function (decorators, targ
 
 
 
+
 let LocationsEffects = class LocationsEffects {
-  constructor(actions$, weatherService, locationService) {
+  constructor(actions$, weatherService, locationService, snackbarService) {
     this.actions$ = actions$;
     this.weatherService = weatherService;
     this.locationService = locationService;
-    this.addLocation$ = (0,_ngrx_effects__WEBPACK_IMPORTED_MODULE_3__.createEffect)(() => this.actions$.pipe((0,_ngrx_effects__WEBPACK_IMPORTED_MODULE_3__.ofType)(_locations_actions__WEBPACK_IMPORTED_MODULE_1__.addLocation), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.concatMap)(value => this.weatherService.getCurrentConditions(value.zipcode)), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.map)(value => {
+    this.snackbarService = snackbarService;
+    this.addLocation$ = (0,_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__.createEffect)(() => this.actions$.pipe((0,_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__.ofType)(_locations_actions__WEBPACK_IMPORTED_MODULE_1__.addLocation), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.concatMap)(value => this.weatherService.getCurrentConditions(value.zipcode)), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.map)(value => {
       this.locationService.addLocation(value.zip);
       return _locations_actions__WEBPACK_IMPORTED_MODULE_1__.addLocationSuccess({
         location: value
       });
+    }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_7__.catchError)((err, caught) => {
+      this.snackbarService.show("Please enter a valid 5-digit ZIP code or make sure the ZIP code field is not empty.", "error");
+      return caught;
     })));
-    this.removeLocation$ = (0,_ngrx_effects__WEBPACK_IMPORTED_MODULE_3__.createEffect)(() => this.actions$.pipe((0,_ngrx_effects__WEBPACK_IMPORTED_MODULE_3__.ofType)(_locations_actions__WEBPACK_IMPORTED_MODULE_1__.removeLocation), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.tap)(value => {
+    this.removeLocation$ = (0,_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__.createEffect)(() => this.actions$.pipe((0,_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__.ofType)(_locations_actions__WEBPACK_IMPORTED_MODULE_1__.removeLocation), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_8__.tap)(value => {
       this.locationService.removeLocation(value.zipcode);
-    }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.map)(value => _locations_actions__WEBPACK_IMPORTED_MODULE_1__.removeLocationSuccess())));
+    }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.map)(value => _locations_actions__WEBPACK_IMPORTED_MODULE_1__.removeLocationSuccess())));
   }
   static #_ = this.ctorParameters = () => [{
-    type: _ngrx_effects__WEBPACK_IMPORTED_MODULE_3__.Actions
+    type: _ngrx_effects__WEBPACK_IMPORTED_MODULE_4__.Actions
   }, {
     type: _core_services_weather_service__WEBPACK_IMPORTED_MODULE_0__.WeatherService
   }, {
     type: _core_services_location_service__WEBPACK_IMPORTED_MODULE_2__.LocationService
+  }, {
+    type: _shared_snackbar_snackbar_service__WEBPACK_IMPORTED_MODULE_3__.SnackbarService
   }];
 };
-LocationsEffects = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Injectable)()], LocationsEffects);
+LocationsEffects = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_9__.Injectable)()], LocationsEffects);
 
 
 /***/ }),
@@ -1185,28 +1377,51 @@ module.exports = ___CSS_LOADER_EXPORT___.toString();
 
 /***/ }),
 
-/***/ 5154:
-/*!********************************************************************!*\
-  !*** ./src/app/shared/components/tab/tab.component.css?ngResource ***!
-  \********************************************************************/
+/***/ 9386:
+/*!*******************************************************************!*\
+  !*** ./src/app/shared/snackbar/snackbar.component.css?ngResource ***!
+  \*******************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // Imports
-var ___CSS_LOADER_API_SOURCEMAP_IMPORT___ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ 2487);
-var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ 1386);
+var ___CSS_LOADER_API_SOURCEMAP_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ 2487);
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ 1386);
 var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(___CSS_LOADER_API_SOURCEMAP_IMPORT___);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ``, "",{"version":3,"sources":[],"names":[],"mappings":"","sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, `.snackbar-wrap {
+    position: fixed;
+    bottom: 50px;
+    left: 50%;
+    padding: 20px 0px;
+    border-radius: 5px;
+    min-width: 20%;
+    transform-origin: center center;
+    transform: translate(-50%, 0%);
+}
+.snackbar-wrap.success {
+        background: rgb(0, 173, 72);
+    }
+.snackbar-wrap.error {
+        background: rgb(173, 35, 0);
+    }
+.snackbar-wrap .snackbar-text {
+        text-align: center;
+        font-size: 1.3em;
+        color: white;
+        margin: 0;
+    }
+
+`, "",{"version":3,"sources":["webpack://./src/app/shared/snackbar/snackbar.component.css"],"names":[],"mappings":"AAAA;IACI,eAAe;IACf,YAAY;IACZ,SAAS;IACT,iBAAiB;IACjB,kBAAkB;IAClB,cAAc;IACd,+BAA+B;IAC/B,8BAA8B;AAClC;AACA;QACQ,2BAA2B;IAC/B;AACJ;QACQ,2BAA2B;IAC/B;AACJ;QACQ,kBAAkB;QAClB,gBAAgB;QAChB,YAAY;QACZ,SAAS;IACb","sourcesContent":[".snackbar-wrap {\r\n    position: fixed;\r\n    bottom: 50px;\r\n    left: 50%;\r\n    padding: 20px 0px;\r\n    border-radius: 5px;\r\n    min-width: 20%;\r\n    transform-origin: center center;\r\n    transform: translate(-50%, 0%);\r\n}\r\n.snackbar-wrap.success {\r\n        background: rgb(0, 173, 72);\r\n    }\r\n.snackbar-wrap.error {\r\n        background: rgb(173, 35, 0);\r\n    }\r\n.snackbar-wrap .snackbar-text {\r\n        text-align: center;\r\n        font-size: 1.3em;\r\n        color: white;\r\n        margin: 0;\r\n    }\r\n\r\n"],"sourceRoot":""}]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___.toString();
 
 
 /***/ }),
 
-/***/ 1245:
-/*!**********************************************************************!*\
-  !*** ./src/app/shared/components/tabs/tabs.component.css?ngResource ***!
-  \**********************************************************************/
+/***/ 2145:
+/*!****************************************************************************!*\
+  !*** ./src/app/shared/tabs/tab-header/tab-header.component.css?ngResource ***!
+  \****************************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // Imports
@@ -1230,14 +1445,15 @@ a{
     margin: 0;
     padding: 0;
     max-height: 35px;
+    max-width: 100%;
+    overflow: hidden;
+    position: relative;
 }
 ul.tabs{
     margin: 0;
     list-style-type : none;
     line-height : 35px;
     max-height: 35px;
-    overflow: hidden;
-    display: inline-block;
     padding-right: 20px
 }
 
@@ -1275,17 +1491,48 @@ ul.tabs > li:after{
     border-color : transparent transparent transparent #ddd;
     -webkit-transform : rotate(-48deg);
     right: -17px;
-}`, "",{"version":3,"sources":["webpack://./src/app/shared/components/tabs/tabs.component.css"],"names":[],"mappings":"AAAA;IACI,yBAAyB;IACzB,iBAAiB;IACjB,eAAe;AACnB;AACA;IACI,kBAAkB;AACtB;;AAEA;IACI,qBAAqB;AACzB;AACA;IACI,SAAS;IACT,UAAU;IACV,gBAAgB;AACpB;AACA;IACI,SAAS;IACT,sBAAsB;IACtB,kBAAkB;IAClB,gBAAgB;IAChB,gBAAgB;IAChB,qBAAqB;IACrB;AACJ;;AAEA;IACI,UAAU;IACV,mBAAmB;AACvB;;AAEA;IACI,aAAa;IACb,oBAAoB;IACpB,mCAAmC;IACnC,iCAAiC;IACjC,uBAAuB;IACvB,aAAa;IACb,gBAAgB;IAChB,mBAAmB;AACvB;;AAEA;IACI,aAAa;IACb,mBAAmB;IACnB,8BAA8B;IAC9B,QAAQ;;AAEZ;;AAEA;IACI,uDAAuD;IACvD,iCAAiC;IACjC,WAAW;AACf;;AAEA;IACI,uDAAuD;IACvD,kCAAkC;IAClC,YAAY;AAChB","sourcesContent":[".tab-close {\r\n    color: rgb(128, 128, 128);\r\n    text-align: right;\r\n    cursor: pointer;\r\n}\r\n.nav-tabs{\r\n    border-bottom:none;\r\n}\r\n\r\na{\r\n    text-decoration: none;\r\n}\r\n.tab-container{\r\n    margin: 0;\r\n    padding: 0;\r\n    max-height: 35px;\r\n}\r\nul.tabs{\r\n    margin: 0;\r\n    list-style-type : none;\r\n    line-height : 35px;\r\n    max-height: 35px;\r\n    overflow: hidden;\r\n    display: inline-block;\r\n    padding-right: 20px\r\n}\r\n\r\nul.tabs > li.active{\r\n    z-index: 2;\r\n    background: #f5f5f5;\r\n}\r\n\r\nul.tabs > li{\r\n    float : right;\r\n    margin : 5px -10px 0;\r\n    border-top-right-radius: 25px 170px;\r\n    border-top-left-radius: 20px 90px;\r\n    padding : 0 30px 0 25px;\r\n    height: 170px;\r\n    background: #ddd;\r\n    position : relative;\r\n}\r\n\r\n.tab-header{\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: space-between;\r\n    gap: 5px;\r\n\r\n}\r\n\r\nul.tabs > li:before{\r\n    border-color : transparent #ddd transparent transparent;\r\n    -webkit-transform : rotate(48deg);\r\n    left: -23px;\r\n}\r\n\r\nul.tabs > li:after{\r\n    border-color : transparent transparent transparent #ddd;\r\n    -webkit-transform : rotate(-48deg);\r\n    right: -17px;\r\n}"],"sourceRoot":""}]);
+}
+.tabs {
+    display: flex;
+    white-space: nowrap;
+    transition: transform 0.3s;
+}
+
+.tab {
+    white-space: nowrap;
+    margin-right: 10px;
+}
+
+
+`, "",{"version":3,"sources":["webpack://./src/app/shared/tabs/tab-header/tab-header.component.css"],"names":[],"mappings":"AAAA;IACI,yBAAyB;IACzB,iBAAiB;IACjB,eAAe;AACnB;AACA;IACI,kBAAkB;AACtB;;AAEA;IACI,qBAAqB;AACzB;AACA;IACI,SAAS;IACT,UAAU;IACV,gBAAgB;IAChB,eAAe;IACf,gBAAgB;IAChB,kBAAkB;AACtB;AACA;IACI,SAAS;IACT,sBAAsB;IACtB,kBAAkB;IAClB,gBAAgB;IAChB;AACJ;;AAEA;IACI,UAAU;IACV,mBAAmB;AACvB;;AAEA;IACI,aAAa;IACb,oBAAoB;IACpB,mCAAmC;IACnC,iCAAiC;IACjC,uBAAuB;IACvB,aAAa;IACb,gBAAgB;IAChB,mBAAmB;AACvB;;AAEA;IACI,aAAa;IACb,mBAAmB;IACnB,8BAA8B;IAC9B,QAAQ;;AAEZ;;AAEA;IACI,uDAAuD;IACvD,iCAAiC;IACjC,WAAW;AACf;;AAEA;IACI,uDAAuD;IACvD,kCAAkC;IAClC,YAAY;AAChB;AACA;IACI,aAAa;IACb,mBAAmB;IACnB,0BAA0B;AAC9B;;AAEA;IACI,mBAAmB;IACnB,kBAAkB;AACtB","sourcesContent":[".tab-close {\r\n    color: rgb(128, 128, 128);\r\n    text-align: right;\r\n    cursor: pointer;\r\n}\r\n.nav-tabs{\r\n    border-bottom:none;\r\n}\r\n\r\na{\r\n    text-decoration: none;\r\n}\r\n.tab-container{\r\n    margin: 0;\r\n    padding: 0;\r\n    max-height: 35px;\r\n    max-width: 100%;\r\n    overflow: hidden;\r\n    position: relative;\r\n}\r\nul.tabs{\r\n    margin: 0;\r\n    list-style-type : none;\r\n    line-height : 35px;\r\n    max-height: 35px;\r\n    padding-right: 20px\r\n}\r\n\r\nul.tabs > li.active{\r\n    z-index: 2;\r\n    background: #f5f5f5;\r\n}\r\n\r\nul.tabs > li{\r\n    float : right;\r\n    margin : 5px -10px 0;\r\n    border-top-right-radius: 25px 170px;\r\n    border-top-left-radius: 20px 90px;\r\n    padding : 0 30px 0 25px;\r\n    height: 170px;\r\n    background: #ddd;\r\n    position : relative;\r\n}\r\n\r\n.tab-header{\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: space-between;\r\n    gap: 5px;\r\n\r\n}\r\n\r\nul.tabs > li:before{\r\n    border-color : transparent #ddd transparent transparent;\r\n    -webkit-transform : rotate(48deg);\r\n    left: -23px;\r\n}\r\n\r\nul.tabs > li:after{\r\n    border-color : transparent transparent transparent #ddd;\r\n    -webkit-transform : rotate(-48deg);\r\n    right: -17px;\r\n}\r\n.tabs {\r\n    display: flex;\r\n    white-space: nowrap;\r\n    transition: transform 0.3s;\r\n}\r\n\r\n.tab {\r\n    white-space: nowrap;\r\n    margin-right: 10px;\r\n}\r\n\r\n\r\n"],"sourceRoot":""}]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___.toString();
 
 
 /***/ }),
 
-/***/ 425:
-/*!**********************************************************************!*\
-  !*** ./src/app/shared/components/test/test.component.css?ngResource ***!
-  \**********************************************************************/
+/***/ 1206:
+/*!**************************************************************!*\
+  !*** ./src/app/shared/tabs/tab/tab.component.css?ngResource ***!
+  \**************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+// Imports
+var ___CSS_LOADER_API_SOURCEMAP_IMPORT___ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ 2487);
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ 1386);
+var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(___CSS_LOADER_API_SOURCEMAP_IMPORT___);
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ``, "",{"version":3,"sources":[],"names":[],"mappings":"","sourceRoot":""}]);
+// Exports
+module.exports = ___CSS_LOADER_EXPORT___.toString();
+
+
+/***/ }),
+
+/***/ 6033:
+/*!****************************************************************!*\
+  !*** ./src/app/shared/tabs/tabs/tabs.component.css?ngResource ***!
+  \****************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // Imports
@@ -1307,7 +1554,7 @@ module.exports = ___CSS_LOADER_EXPORT___.toString();
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<router-outlet></router-outlet>\r\n";
+module.exports = "<router-outlet></router-outlet>\n<app-snackbar></app-snackbar>\n";
 
 /***/ }),
 
@@ -1362,40 +1609,51 @@ module.exports = "<div class=\"container-fluid\">\r\n\r\n  <app-zipcode-entry> <
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<div class=\"well\">\r\n  <h2>Enter a zipcode:</h2>\r\n  <input type=\"text\" #zipcode placeholder=\"Zipcode\" class=\"form-control\">\r\n  <br>\r\n  <button class=\"btn btn-primary\" (click)=\"addLocation(zipcode.value)\" >\r\n    Add location\r\n  </button>\r\n</div>";
+module.exports = "<div class=\"well\">\r\n  <h2>Enter a zipcode:</h2>\r\n  <input type=\"text\" #zipcode placeholder=\"Zipcode\" class=\"form-control\" required>\r\n  <br>\r\n  <button class=\"btn btn-primary\" (click)=\"addLocation(zipcode.value)\" >\r\n    Add location\r\n  </button>\r\n</div>\r\n";
 
 /***/ }),
 
-/***/ 6329:
-/*!*********************************************************************!*\
-  !*** ./src/app/shared/components/tab/tab.component.html?ngResource ***!
-  \*********************************************************************/
+/***/ 2174:
+/*!********************************************************************!*\
+  !*** ./src/app/shared/snackbar/snackbar.component.html?ngResource ***!
+  \********************************************************************/
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<div [hidden]=\"!active\" class=\"pane\">\r\n    <ng-content></ng-content>\r\n</div>\r\n";
+module.exports = "<div *ngIf=\"show\"\n     [ngClass]=\"['snackbar-wrap',type]\">\n    <p class=\"snackbar-text\">\n        {{message}}\n    </p>\n</div>\n";
 
 /***/ }),
 
-/***/ 8602:
-/*!***********************************************************************!*\
-  !*** ./src/app/shared/components/tabs/tabs.component.html?ngResource ***!
-  \***********************************************************************/
+/***/ 3895:
+/*!*****************************************************************************!*\
+  !*** ./src/app/shared/tabs/tab-header/tab-header.component.html?ngResource ***!
+  \*****************************************************************************/
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<div  class=\"tab-container\">\r\n    <ul class=\"nav nav-tabs tabs cleafix\">\r\n        <li *ngFor=\"let tab of tabs; trackBy:trackbyTitle\" [ngClass]=\"{'tab':true,'active':tab.active}\">\r\n            <div class=\"tab-header\">\r\n                <a (click)=\"selectTab(tab)\" href=\"#\">{{tab.title}}</a>\r\n                <button (click)=\"closeTab(tab)\" class=\"close\">&times;</button>\r\n            </div>\r\n        </li>\r\n    </ul>\r\n</div>\r\n<ng-content></ng-content>\r\n";
+module.exports = "<button class=\"btn btn-primary\" *ngIf=\"scrollPosition > 0\" (click)=\"scrollPrev()\"> < </button>\n<div  class=\"tab-container\" #itemListContainer>\n    <ul class=\"nav nav-tabs tabs clearfix\"  #itemList>\n        <li *ngFor=\"let tab of tabs; trackBy:trackbyTitle\" [ngClass]=\"{'tab':true,'active':tab.active}\">\n            <div class=\"tab-header\">\n                <a (click)=\"selectTab(tab)\" href=\"#\">{{tab.title}}</a>\n                <button (click)=\"closeTab(tab)\" class=\"close\">&times;</button>\n            </div>\n        </li>\n    </ul>\n</div>\n<button class=\"btn btn-primary\" *ngIf=\"isOverflowed\" (click)=\"scrollNext()\"> > </button>\n";
 
 /***/ }),
 
-/***/ 1488:
-/*!***********************************************************************!*\
-  !*** ./src/app/shared/components/test/test.component.html?ngResource ***!
-  \***********************************************************************/
+/***/ 9788:
+/*!***************************************************************!*\
+  !*** ./src/app/shared/tabs/tab/tab.component.html?ngResource ***!
+  \***************************************************************/
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<p>test works!</p>\n";
+module.exports = "<div [hidden]=\"!active\" class=\"pane\">\n    <ng-content></ng-content>\n</div>\n";
+
+/***/ }),
+
+/***/ 46:
+/*!*****************************************************************!*\
+  !*** ./src/app/shared/tabs/tabs/tabs.component.html?ngResource ***!
+  \*****************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "<app-tab-header [tabs]=\"tabs\" (close)=\"closeTab($event)\" (select)=\"selectTab($event)\"></app-tab-header>\r\n<ng-content></ng-content>\r\n";
 
 /***/ })
 
