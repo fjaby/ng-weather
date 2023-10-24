@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, inject} from '@angular/core';
 import {CacheService} from "../../core/services/cache.service";
 
 @Component({
@@ -16,6 +16,8 @@ export class CacheConfigurationComponent {
         let val = Number(value);
         if(val !==  Number.NaN) {
             this.cacheService.timeToLiveValue = val *1000;
+        }else if( val <0){
+            this.cacheService.timeToLiveValue = 0;
         }
     }
 }

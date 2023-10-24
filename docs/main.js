@@ -443,6 +443,8 @@ let CacheConfigurationComponent = class CacheConfigurationComponent {
     let val = Number(value);
     if (val !== Number.NaN) {
       this.cacheService.timeToLiveValue = val * 1000;
+    } else if (val < 0) {
+      this.cacheService.timeToLiveValue = 0;
     }
   }
 };
@@ -651,6 +653,63 @@ ZipcodeEntryComponent = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_3_
 
 /***/ }),
 
+/***/ 766:
+/*!************************************************************!*\
+  !*** ./src/app/shared/directive/numbers-only.directive.ts ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   NumbersOnlyDirective: () => (/* binding */ NumbersOnlyDirective)
+/* harmony export */ });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ 1699);
+var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
+  var c = arguments.length,
+    r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+    d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+let NumbersOnlyDirective = class NumbersOnlyDirective {
+  constructor(_el) {
+    this._el = _el;
+    this.regexStr = '^[0-9]+$';
+  }
+  onKeyPress(event) {
+    return new RegExp(this.regexStr).test(event.key);
+  }
+  onPaste(event) {
+    this.validateFields(event);
+  }
+  validateFields(event) {
+    event.preventDefault();
+    const pasteData = event.clipboardData.getData('text/plain').replace(/[^0-9]/g, '');
+    document.execCommand('insertHTML', false, pasteData);
+  }
+  static #_ = this.ctorParameters = () => [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.ElementRef
+  }];
+  static #_2 = this.propDecorators = {
+    onKeyPress: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.HostListener,
+      args: ['keypress', ['$event']]
+    }],
+    onPaste: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.HostListener,
+      args: ['paste', ['$event']]
+    }]
+  };
+};
+NumbersOnlyDirective = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive)({
+  selector: '[appNumbersOnly]'
+})], NumbersOnlyDirective);
+
+
+/***/ }),
+
 /***/ 6208:
 /*!*****************************************!*\
   !*** ./src/app/shared/shared.module.ts ***!
@@ -662,12 +721,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   SharedModule: () => (/* binding */ SharedModule)
 /* harmony export */ });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 1699);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ 6575);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 1699);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common */ 6575);
 /* harmony import */ var _tabs_tabs_tabs_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./tabs/tabs/tabs.component */ 7070);
 /* harmony import */ var _tabs_tab_tab_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tabs/tab/tab.component */ 7842);
 /* harmony import */ var _snackbar_snackbar_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./snackbar/snackbar.component */ 4187);
 /* harmony import */ var _tabs_tab_header_tab_header_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./tabs/tab-header/tab-header.component */ 2642);
+/* harmony import */ var _directive_numbers_only_directive__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./directive/numbers-only.directive */ 766);
 var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
   var c = arguments.length,
     r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
@@ -681,11 +741,12 @@ var __decorate = undefined && undefined.__decorate || function (decorators, targ
 
 
 
+
 let SharedModule = class SharedModule {};
-SharedModule = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.NgModule)({
-  declarations: [_tabs_tabs_tabs_component__WEBPACK_IMPORTED_MODULE_0__.TabsComponent, _tabs_tab_tab_component__WEBPACK_IMPORTED_MODULE_1__.TabComponent, _snackbar_snackbar_component__WEBPACK_IMPORTED_MODULE_2__.SnackbarComponent, _tabs_tab_header_tab_header_component__WEBPACK_IMPORTED_MODULE_3__.TabHeaderComponent],
-  exports: [_tabs_tabs_tabs_component__WEBPACK_IMPORTED_MODULE_0__.TabsComponent, _tabs_tab_tab_component__WEBPACK_IMPORTED_MODULE_1__.TabComponent, _snackbar_snackbar_component__WEBPACK_IMPORTED_MODULE_2__.SnackbarComponent],
-  imports: [_angular_common__WEBPACK_IMPORTED_MODULE_5__.CommonModule]
+SharedModule = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.NgModule)({
+  declarations: [_tabs_tabs_tabs_component__WEBPACK_IMPORTED_MODULE_0__.TabsComponent, _tabs_tab_tab_component__WEBPACK_IMPORTED_MODULE_1__.TabComponent, _snackbar_snackbar_component__WEBPACK_IMPORTED_MODULE_2__.SnackbarComponent, _tabs_tab_header_tab_header_component__WEBPACK_IMPORTED_MODULE_3__.TabHeaderComponent, _directive_numbers_only_directive__WEBPACK_IMPORTED_MODULE_4__.NumbersOnlyDirective],
+  exports: [_tabs_tabs_tabs_component__WEBPACK_IMPORTED_MODULE_0__.TabsComponent, _tabs_tab_tab_component__WEBPACK_IMPORTED_MODULE_1__.TabComponent, _snackbar_snackbar_component__WEBPACK_IMPORTED_MODULE_2__.SnackbarComponent, _directive_numbers_only_directive__WEBPACK_IMPORTED_MODULE_4__.NumbersOnlyDirective],
+  imports: [_angular_common__WEBPACK_IMPORTED_MODULE_6__.CommonModule]
 })], SharedModule);
 
 
@@ -1561,7 +1622,7 @@ module.exports = "<router-outlet></router-outlet>\n<app-snackbar></app-snackbar>
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<div class=\"well\">\r\n    <h2>Cache configuration</h2>\r\n    <div class=\"options\">\r\n        <span> time to live (seconds):</span>\r\n        <input type=\"number\" [value]=\"timetoLiveValue\" #ttl\r\n               (change)=\"setTimeToLive(ttl.value)\">\r\n    </div>\r\n</div>";
+module.exports = "<div class=\"well\">\r\n    <h2>Cache configuration</h2>\r\n    <div class=\"options\">\r\n        <span> time to live (seconds):</span>\r\n        <input type=\"number\" [value]=\"timetoLiveValue\" #ttl appNumbersOnly\r\n               (change)=\"setTimeToLive(ttl.value)\">\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
 
