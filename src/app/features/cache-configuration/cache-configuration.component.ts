@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {CacheService} from "../../core/services/cache.service";
 
 @Component({
@@ -10,7 +10,7 @@ import {CacheService} from "../../core/services/cache.service";
 export class CacheConfigurationComponent {
 
     private cacheService = inject(CacheService)
-    timetoLiveValue: number = this.cacheService.timeToLiveValue/1000;
+    timeToLiveValue: number = this.cacheService.timeToLiveValue/1000;
 
     setTimeToLive(value: string) {
         let val = Number(value);

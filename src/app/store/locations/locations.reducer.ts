@@ -5,7 +5,7 @@ import {addLocation, addLocationFailure, addLocationSuccess, removeLocation} fro
 export const initialState: LocationState = {locations: []}
 
 export const locationReducer = createReducer<LocationState, Action>(initialState,
-        on(addLocation, (state, props) => {
+        on(addLocation, (state) => {
             return {...state}
         }),
         on(addLocationSuccess, (state, props) => {
@@ -17,7 +17,7 @@ export const locationReducer = createReducer<LocationState, Action>(initialState
                 ]
             }
         }),
-        on(addLocationFailure, (state, props) => {
+        on(addLocationFailure, (state) => {
             return {...state}
         }),
         on(removeLocation, (state, props) => {

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {LocationService} from "../../core/services/location.service";
 import {Store} from "@ngrx/store";
 import { addLocation } from 'app/store/locations/locations.actions';
 

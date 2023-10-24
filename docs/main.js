@@ -71,6 +71,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_locations_locations_reducer__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./store/locations/locations.reducer */ 3969);
 /* harmony import */ var _ngrx_effects__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @ngrx/effects */ 1575);
 /* harmony import */ var _store_locations_locations_effects__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./store/locations/locations.effects */ 3183);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @angular/common */ 6575);
 var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
   var c = arguments.length,
     r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
@@ -100,6 +101,7 @@ var __decorate = undefined && undefined.__decorate || function (decorators, targ
 
 
 
+
 let AppModule = class AppModule {};
 AppModule = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_14__.NgModule)({
   declarations: [_app_component__WEBPACK_IMPORTED_MODULE_0__.AppComponent, _features_zipcode_entry_zipcode_entry_component__WEBPACK_IMPORTED_MODULE_1__.ZipcodeEntryComponent, _features_forecasts_list_forecasts_list_component__WEBPACK_IMPORTED_MODULE_3__.ForecastsListComponent, _features_current_conditions_current_conditions_component__WEBPACK_IMPORTED_MODULE_4__.CurrentConditionsComponent, _features_main_page_main_page_component__WEBPACK_IMPORTED_MODULE_5__.MainPageComponent, _features_cache_configuration_cache_configuration_component__WEBPACK_IMPORTED_MODULE_10__.CacheConfigurationComponent],
@@ -107,7 +109,7 @@ AppModule = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_14__.NgModule)
     enabled: _environments_environment__WEBPACK_IMPORTED_MODULE_7__.environment.production
   }), _shared_shared_module__WEBPACK_IMPORTED_MODULE_8__.SharedModule, _ngrx_store__WEBPACK_IMPORTED_MODULE_20__.StoreModule.forRoot({
     [_store_locations_locations_states__WEBPACK_IMPORTED_MODULE_11__.LOCATION_FEATURE_KEY]: _store_locations_locations_reducer__WEBPACK_IMPORTED_MODULE_12__.locationReducer
-  }), _ngrx_effects__WEBPACK_IMPORTED_MODULE_21__.EffectsModule.forRoot([_store_locations_locations_effects__WEBPACK_IMPORTED_MODULE_13__.LocationsEffects])],
+  }), _ngrx_effects__WEBPACK_IMPORTED_MODULE_21__.EffectsModule.forRoot([_store_locations_locations_effects__WEBPACK_IMPORTED_MODULE_13__.LocationsEffects]), _angular_common__WEBPACK_IMPORTED_MODULE_22__.NgOptimizedImage],
   providers: [_core_services_location_service__WEBPACK_IMPORTED_MODULE_2__.LocationService, {
     provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_17__.HTTP_INTERCEPTORS,
     useClass: _core_interceptors_HttpCacheInterceptor__WEBPACK_IMPORTED_MODULE_9__.HttpCacheInterceptor,
@@ -257,7 +259,7 @@ let CacheService = class CacheService {
     const cachedData = {
       data: data,
       expiresAt: expirationTime,
-      timetoLive: this._timeToLive()
+      timeToLive: this._timeToLive()
     };
     localStorage.setItem(key, JSON.stringify(cachedData));
   }
@@ -437,7 +439,7 @@ var __decorate = undefined && undefined.__decorate || function (decorators, targ
 let CacheConfigurationComponent = class CacheConfigurationComponent {
   constructor() {
     this.cacheService = (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.inject)(_core_services_cache_service__WEBPACK_IMPORTED_MODULE_2__.CacheService);
-    this.timetoLiveValue = this.cacheService.timeToLiveValue / 1000;
+    this.timeToLiveValue = this.cacheService.timeToLiveValue / 1000;
   }
   setTimeToLive(value) {
     let val = Number(value);
@@ -475,8 +477,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 1699);
 /* harmony import */ var _core_services_weather_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../core/services/weather.service */ 4323);
 /* harmony import */ var _core_services_location_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../core/services/location.service */ 4107);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ 7947);
-/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ngrx/store */ 6270);
+/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ngrx/store */ 6270);
 /* harmony import */ var _store_locations_locations_selector__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../store/locations/locations.selector */ 604);
 /* harmony import */ var _store_locations_locations_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../store/locations/locations.actions */ 5131);
 var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
@@ -494,12 +495,10 @@ var __decorate = undefined && undefined.__decorate || function (decorators, targ
 
 
 
-
 let CurrentConditionsComponent = class CurrentConditionsComponent {
   constructor() {
     this.weatherService = (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.inject)(_core_services_weather_service__WEBPACK_IMPORTED_MODULE_2__.WeatherService);
-    this.router = (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.inject)(_angular_router__WEBPACK_IMPORTED_MODULE_7__.Router);
-    this.store = (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.inject)(_ngrx_store__WEBPACK_IMPORTED_MODULE_8__.Store);
+    this.store = (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.inject)(_ngrx_store__WEBPACK_IMPORTED_MODULE_7__.Store);
     this.locationService = (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.inject)(_core_services_location_service__WEBPACK_IMPORTED_MODULE_3__.LocationService);
     this.currentConditionsByZip = this.store.selectSignal(_store_locations_locations_selector__WEBPACK_IMPORTED_MODULE_4__.locationsSelector);
   }
@@ -941,6 +940,13 @@ let TabHeaderComponent = class TabHeaderComponent {
     this.checkOverflow();
     this.itemList.nativeElement.style.transform = `translateX(-${this.scrollPosition}px)`;
   }
+  goToLast() {
+    const container = this.itemListContainer.nativeElement;
+    const list = this.itemList.nativeElement;
+    this.scrollPosition = list.scrollWidth - container.clientWidth;
+    this.itemList.nativeElement.style.transform = `translateX(-${this.scrollPosition}px)`;
+    this.checkOverflow();
+  }
   static #_ = this.ctorParameters = () => [{
     type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.ChangeDetectorRef
   }];
@@ -1092,7 +1098,7 @@ let TabsComponent = class TabsComponent {
     this._tabsSubscription = this.tabs.changes.subscribe(() => {
       if (this.tabs.length !== 0) {
         this.selectTab(this.tabs.last);
-        this.header.checkOverflow();
+        this.header.goToLast();
       }
     });
   }
@@ -1215,7 +1221,7 @@ let LocationsEffects = class LocationsEffects {
     })));
     this.removeLocation$ = (0,_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__.createEffect)(() => this.actions$.pipe((0,_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__.ofType)(_locations_actions__WEBPACK_IMPORTED_MODULE_1__.removeLocation), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_8__.tap)(value => {
       this.locationService.removeLocation(value.zipcode);
-    }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.map)(value => _locations_actions__WEBPACK_IMPORTED_MODULE_1__.removeLocationSuccess())));
+    }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.map)(() => _locations_actions__WEBPACK_IMPORTED_MODULE_1__.removeLocationSuccess())));
   }
   static #_ = this.ctorParameters = () => [{
     type: _ngrx_effects__WEBPACK_IMPORTED_MODULE_4__.Actions
@@ -1251,7 +1257,7 @@ __webpack_require__.r(__webpack_exports__);
 const initialState = {
   locations: []
 };
-const locationReducer = (0,_ngrx_store__WEBPACK_IMPORTED_MODULE_1__.createReducer)(initialState, (0,_ngrx_store__WEBPACK_IMPORTED_MODULE_1__.on)(_locations_actions__WEBPACK_IMPORTED_MODULE_0__.addLocation, (state, props) => {
+const locationReducer = (0,_ngrx_store__WEBPACK_IMPORTED_MODULE_1__.createReducer)(initialState, (0,_ngrx_store__WEBPACK_IMPORTED_MODULE_1__.on)(_locations_actions__WEBPACK_IMPORTED_MODULE_0__.addLocation, state => {
   return {
     ...state
   };
@@ -1260,7 +1266,7 @@ const locationReducer = (0,_ngrx_store__WEBPACK_IMPORTED_MODULE_1__.createReduce
     ...state,
     locations: [...state.locations.filter(location => location.zip !== props.location.zip), props.location]
   };
-}), (0,_ngrx_store__WEBPACK_IMPORTED_MODULE_1__.on)(_locations_actions__WEBPACK_IMPORTED_MODULE_0__.addLocationFailure, (state, props) => {
+}), (0,_ngrx_store__WEBPACK_IMPORTED_MODULE_1__.on)(_locations_actions__WEBPACK_IMPORTED_MODULE_0__.addLocationFailure, state => {
   return {
     ...state
   };
@@ -1466,7 +1472,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.snackbar-wrap {
     position: fixed;
     bottom: 50px;
     left: 50%;
-    padding: 20px 0px;
+    padding: 20px 0;
     border-radius: 5px;
     min-width: 20%;
     transform-origin: center center;
@@ -1485,7 +1491,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.snackbar-wrap {
         margin: 0;
     }
 
-`, "",{"version":3,"sources":["webpack://./src/app/shared/snackbar/snackbar.component.css"],"names":[],"mappings":"AAAA;IACI,eAAe;IACf,YAAY;IACZ,SAAS;IACT,iBAAiB;IACjB,kBAAkB;IAClB,cAAc;IACd,+BAA+B;IAC/B,8BAA8B;AAClC;AACA;QACQ,2BAA2B;IAC/B;AACJ;QACQ,2BAA2B;IAC/B;AACJ;QACQ,kBAAkB;QAClB,gBAAgB;QAChB,YAAY;QACZ,SAAS;IACb","sourcesContent":[".snackbar-wrap {\r\n    position: fixed;\r\n    bottom: 50px;\r\n    left: 50%;\r\n    padding: 20px 0px;\r\n    border-radius: 5px;\r\n    min-width: 20%;\r\n    transform-origin: center center;\r\n    transform: translate(-50%, 0%);\r\n}\r\n.snackbar-wrap.success {\r\n        background: rgb(0, 173, 72);\r\n    }\r\n.snackbar-wrap.error {\r\n        background: rgb(173, 35, 0);\r\n    }\r\n.snackbar-wrap .snackbar-text {\r\n        text-align: center;\r\n        font-size: 1.3em;\r\n        color: white;\r\n        margin: 0;\r\n    }\r\n\r\n"],"sourceRoot":""}]);
+`, "",{"version":3,"sources":["webpack://./src/app/shared/snackbar/snackbar.component.css"],"names":[],"mappings":"AAAA;IACI,eAAe;IACf,YAAY;IACZ,SAAS;IACT,eAAe;IACf,kBAAkB;IAClB,cAAc;IACd,+BAA+B;IAC/B,8BAA8B;AAClC;AACA;QACQ,2BAA2B;IAC/B;AACJ;QACQ,2BAA2B;IAC/B;AACJ;QACQ,kBAAkB;QAClB,gBAAgB;QAChB,YAAY;QACZ,SAAS;IACb","sourcesContent":[".snackbar-wrap {\r\n    position: fixed;\r\n    bottom: 50px;\r\n    left: 50%;\r\n    padding: 20px 0;\r\n    border-radius: 5px;\r\n    min-width: 20%;\r\n    transform-origin: center center;\r\n    transform: translate(-50%, 0%);\r\n}\r\n.snackbar-wrap.success {\r\n        background: rgb(0, 173, 72);\r\n    }\r\n.snackbar-wrap.error {\r\n        background: rgb(173, 35, 0);\r\n    }\r\n.snackbar-wrap .snackbar-text {\r\n        text-align: center;\r\n        font-size: 1.3em;\r\n        color: white;\r\n        margin: 0;\r\n    }\r\n\r\n"],"sourceRoot":""}]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___.toString();
 
@@ -1639,7 +1645,7 @@ module.exports = "<router-outlet></router-outlet>\r\n<app-snackbar></app-snackba
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<div class=\"well\">\r\n    <h2>Cache configuration</h2>\r\n    <div class=\"options\">\r\n        <span> time to live (seconds):</span>\r\n        <input type=\"number\" [value]=\"timetoLiveValue\" #ttl appNumbersOnly min=\"0\"\r\n               (change)=\"setTimeToLive(ttl.value)\">\r\n    </div>\r\n</div>\r\n";
+module.exports = "<div class=\"well\">\r\n    <h2>Cache configuration</h2>\r\n    <div class=\"options\">\r\n        <span> time to live (seconds):</span>\r\n        <input type=\"number\" [value]=\"timeToLiveValue\" #ttl appNumbersOnly min=\"0\"\r\n               (change)=\"setTimeToLive(ttl.value)\">\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
 

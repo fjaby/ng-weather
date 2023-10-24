@@ -1,6 +1,5 @@
 import {
     AfterViewInit,
-    ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
     ElementRef,
@@ -88,5 +87,13 @@ export class TabHeaderComponent implements AfterViewInit {
         this.checkOverflow()
         this.itemList.nativeElement.style.transform = `translateX(-${this.scrollPosition}px)`;
 
+    }
+
+    goToLast() {
+        const container = this.itemListContainer.nativeElement;
+        const list = this.itemList.nativeElement;
+        this.scrollPosition =list.scrollWidth -  container.clientWidth;
+        this.itemList.nativeElement.style.transform = `translateX(-${this.scrollPosition}px)`;
+        this.checkOverflow()
     }
 }

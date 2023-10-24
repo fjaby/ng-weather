@@ -21,6 +21,7 @@ import {LOCATION_FEATURE_KEY} from "./store/locations/locations.states";
 import {locationReducer} from "./store/locations/locations.reducer";
 import {EffectsModule} from '@ngrx/effects';
 import {LocationsEffects} from "./store/locations/locations.effects";
+import {NgOptimizedImage} from "@angular/common";
 
 @NgModule({
     declarations: [
@@ -41,7 +42,8 @@ import {LocationsEffects} from "./store/locations/locations.effects";
         SharedModule,
         StoreModule.forRoot({[LOCATION_FEATURE_KEY]: locationReducer}),
 
-        EffectsModule.forRoot([LocationsEffects])
+        EffectsModule.forRoot([LocationsEffects]),
+        NgOptimizedImage
     ],
     providers: [
         LocationService,

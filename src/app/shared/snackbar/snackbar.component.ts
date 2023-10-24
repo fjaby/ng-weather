@@ -8,10 +8,11 @@ import {SnackbarService} from "./snackbar.service";
     styleUrls: ['./snackbar.component.css']
 })
 export class SnackbarComponent {
-    private show:boolean = false;
-    private message: string = '';
-    private type: string = 'success';
+    protected show:boolean = false;
+    protected message: string = '';
+    protected type: string = 'success';
     private snackbarSubscription: Subscription;
+
 
     constructor(private snackbarService: SnackbarService) {
     }

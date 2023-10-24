@@ -6,7 +6,6 @@ import {catchError, concatMap, map, tap} from "rxjs/operators";
 import {ConditionsAndZip} from "../conditions-and-zip.type";
 import {LocationService} from "../../core/services/location.service";
 import {SnackbarService} from "../../shared/snackbar/snackbar.service";
-import {of} from "rxjs";
 
 @Injectable()
 export class LocationsEffects {
@@ -31,7 +30,7 @@ export class LocationsEffects {
             tap(value => {
                 this.locationService.removeLocation(value.zipcode)
             }),
-            map(value => fromActions.removeLocationSuccess())
+            map(() => fromActions.removeLocationSuccess())
         )
     );
 

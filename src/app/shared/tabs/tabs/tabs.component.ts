@@ -7,7 +7,7 @@ import {
     QueryList, ViewChild
 } from '@angular/core';
 import {TabComponent} from "../tab/tab.component";
-import {identity, Subscription} from "rxjs";
+import {Subscription} from "rxjs";
 import {TabHeaderComponent} from "../tab-header/tab-header.component";
 
 @Component({
@@ -37,7 +37,7 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
         this._tabsSubscription = this.tabs.changes.subscribe(() => {
             if (this.tabs.length !== 0) {
                 this.selectTab(this.tabs.last);
-                this.header.checkOverflow();
+                this.header.goToLast();
             }
         })
     }

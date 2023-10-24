@@ -1,6 +1,5 @@
-import {createAction, createActionGroup, props} from "@ngrx/store";
+import {createAction, props} from "@ngrx/store";
 import {ConditionsAndZip} from "../conditions-and-zip.type";
-import {HttpErrorResponse} from "@angular/common/http";
 
 export const removeLocation = createAction('remove Location',props<{zipcode: string}>());
 export const addLocation = createAction('Add Location',props<{zipcode: string}>());

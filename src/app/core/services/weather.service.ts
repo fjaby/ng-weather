@@ -1,13 +1,12 @@
-import {Injectable, Signal, signal} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 
 import {HttpClient, HttpContext} from '@angular/common/http';
 import {CurrentConditions} from '../../features/current-conditions/current-conditions.type';
 import {ConditionsAndZip} from '../../store/conditions-and-zip.type';
 import {Forecast} from '../../features/forecasts-list/forecast.type';
-import {error} from "protractor";
 import {CACHE_ACTIVATED} from "../interceptors/HttpCacheInterceptor";
-import {map, tap} from "rxjs/operators";
+import {map} from "rxjs/operators";
 
 @Injectable({
   providedIn: "root"

@@ -34,10 +34,10 @@ export class CacheService {
     // Save data on local storage with a key.
     cache(key: string, data: any): void {
         const expirationTime: number = new Date().getTime() + this._timeToLive();
-        const cachedData: { data, expiresAt, timetoLive } = {
+        const cachedData: { data, expiresAt, timeToLive } = {
             data: data,
             expiresAt: expirationTime,
-            timetoLive: this._timeToLive()
+            timeToLive: this._timeToLive()
         };
         localStorage.setItem(key, JSON.stringify(cachedData));
 
