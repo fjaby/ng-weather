@@ -14,14 +14,15 @@ a{
     margin: 0;
     padding: 0;
     max-height: 35px;
+    max-width: 100%;
+    overflow: hidden;
+    position: relative;
 }
 ul.tabs{
     margin: 0;
     list-style-type : none;
     line-height : 35px;
     max-height: 35px;
-    overflow: hidden;
-    display: inline-block;
     padding-right: 20px
 }
 
@@ -60,3 +61,15 @@ ul.tabs > li:after{
     -webkit-transform : rotate(-48deg);
     right: -17px;
 }
+.tabs {
+    display: flex;
+    white-space: nowrap;
+    transition: transform 0.3s;
+}
+
+.tab {
+    white-space: nowrap;
+    margin-right: 10px;
+}
+
+

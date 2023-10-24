@@ -1,5 +1,6 @@
-<div  class="tab-container">
-    <ul class="nav nav-tabs tabs clearfix">
+<button class="btn btn-primary" *ngIf="scrollPosition > 0" (click)="scrollPrev()"> < </button>
+<div  class="tab-container" #itemListContainer>
+    <ul class="nav nav-tabs tabs clearfix"  #itemList>
         <li *ngFor="let tab of tabs; trackBy:trackbyTitle" [ngClass]="{'tab':true,'active':tab.active}">
             <div class="tab-header">
                 <a (click)="selectTab(tab)" href="#">{{tab.title}}</a>
@@ -8,3 +9,4 @@
         </li>
     </ul>
 </div>
+<button class="btn btn-primary" *ngIf="isOverflowed" (click)="scrollNext()"> > </button>

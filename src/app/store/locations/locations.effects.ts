@@ -21,10 +21,7 @@ export class LocationsEffects {
             }),
             catchError((err, caught) => {
                 this.snackbarService.show("Please enter a valid 5-digit ZIP code or make sure the ZIP code field is not empty.","error")
-                return of({
-                    type: fromActions.addLocationFailure().type,
-                    payload:{err}
-                })
+                return caught;
             })
         )
     );
