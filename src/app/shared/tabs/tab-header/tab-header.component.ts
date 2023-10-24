@@ -66,14 +66,11 @@ export class TabHeaderComponent implements AfterViewInit {
         const container = this.itemListContainer.nativeElement;
         const list = this.itemList.nativeElement;
         this.scrollPosition += container.clientWidth;
-
         if (this.scrollPosition > list.scrollWidth - container.clientWidth) {
             this.scrollPosition = list.scrollWidth - container.clientWidth;
         }
-
         this.checkOverflow()
         list.style.transform = `translateX(-${this.scrollPosition}px)`;
-
     }
 
 

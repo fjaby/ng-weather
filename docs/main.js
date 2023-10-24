@@ -71,7 +71,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_locations_locations_reducer__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./store/locations/locations.reducer */ 3969);
 /* harmony import */ var _ngrx_effects__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @ngrx/effects */ 1575);
 /* harmony import */ var _store_locations_locations_effects__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./store/locations/locations.effects */ 3183);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @angular/common */ 6575);
 var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
   var c = arguments.length,
     r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
@@ -101,7 +100,6 @@ var __decorate = undefined && undefined.__decorate || function (decorators, targ
 
 
 
-
 let AppModule = class AppModule {};
 AppModule = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_14__.NgModule)({
   declarations: [_app_component__WEBPACK_IMPORTED_MODULE_0__.AppComponent, _features_zipcode_entry_zipcode_entry_component__WEBPACK_IMPORTED_MODULE_1__.ZipcodeEntryComponent, _features_forecasts_list_forecasts_list_component__WEBPACK_IMPORTED_MODULE_3__.ForecastsListComponent, _features_current_conditions_current_conditions_component__WEBPACK_IMPORTED_MODULE_4__.CurrentConditionsComponent, _features_main_page_main_page_component__WEBPACK_IMPORTED_MODULE_5__.MainPageComponent, _features_cache_configuration_cache_configuration_component__WEBPACK_IMPORTED_MODULE_10__.CacheConfigurationComponent],
@@ -109,7 +107,7 @@ AppModule = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_14__.NgModule)
     enabled: _environments_environment__WEBPACK_IMPORTED_MODULE_7__.environment.production
   }), _shared_shared_module__WEBPACK_IMPORTED_MODULE_8__.SharedModule, _ngrx_store__WEBPACK_IMPORTED_MODULE_20__.StoreModule.forRoot({
     [_store_locations_locations_states__WEBPACK_IMPORTED_MODULE_11__.LOCATION_FEATURE_KEY]: _store_locations_locations_reducer__WEBPACK_IMPORTED_MODULE_12__.locationReducer
-  }), _ngrx_effects__WEBPACK_IMPORTED_MODULE_21__.EffectsModule.forRoot([_store_locations_locations_effects__WEBPACK_IMPORTED_MODULE_13__.LocationsEffects]), _angular_common__WEBPACK_IMPORTED_MODULE_22__.NgOptimizedImage],
+  }), _ngrx_effects__WEBPACK_IMPORTED_MODULE_21__.EffectsModule.forRoot([_store_locations_locations_effects__WEBPACK_IMPORTED_MODULE_13__.LocationsEffects])],
   providers: [_core_services_location_service__WEBPACK_IMPORTED_MODULE_2__.LocationService, {
     provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_17__.HTTP_INTERCEPTORS,
     useClass: _core_interceptors_HttpCacheInterceptor__WEBPACK_IMPORTED_MODULE_9__.HttpCacheInterceptor,

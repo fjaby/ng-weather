@@ -13,7 +13,6 @@ export class SnackbarComponent {
     protected type: string = 'success';
     private snackbarSubscription: Subscription;
 
-
     constructor(private snackbarService: SnackbarService) {
     }
 
