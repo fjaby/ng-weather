@@ -18,8 +18,7 @@ import {TabComponent} from "../tab/tab.component";
     styleUrls: ['./tab-header.component.css'],
     host: {
         "[style.display]": "'flex'"
-    },
-    changeDetection: ChangeDetectionStrategy.OnPush
+    }
 })
 export class TabHeaderComponent implements AfterViewInit {
     @ViewChild('itemListContainer') itemListContainer: ElementRef;

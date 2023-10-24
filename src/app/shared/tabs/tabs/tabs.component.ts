@@ -20,6 +20,7 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
     tabs: QueryList<TabComponent>;
     private _tabsSubscription = Subscription.EMPTY;
 
+
     constructor(private cdRef: ChangeDetectorRef) {
     }
 

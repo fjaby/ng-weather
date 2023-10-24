@@ -906,7 +906,6 @@ TabHeaderComponent = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.C
   host: {
     "[style.display]": "'flex'"
   },
-  changeDetection: _angular_core__WEBPACK_IMPORTED_MODULE_2__.ChangeDetectionStrategy.OnPush,
   styles: [(_tab_header_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1___default())]
 })], TabHeaderComponent);
 
