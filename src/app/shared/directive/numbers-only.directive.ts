@@ -18,6 +18,13 @@ export class NumbersOnlyDirective {
     this.validateFields(event)
   }
 
+  @HostListener('blur',['$event'])
+  onBlur(event){
+    event.preventDefault();
+    if(!this._el.nativeElement.value) {
+      this._el.nativeElement.value = 0;
+    }
+  }
 
   validateFields(event: ClipboardEvent){
     event.preventDefault();

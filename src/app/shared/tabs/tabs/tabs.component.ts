@@ -4,10 +4,11 @@ import {
     Component,
     ContentChildren,
     OnDestroy,
-    QueryList
+    QueryList, ViewChild
 } from '@angular/core';
 import {TabComponent} from "../tab/tab.component";
 import {identity, Subscription} from "rxjs";
+import {TabHeaderComponent} from "../tab-header/tab-header.component";
 
 @Component({
     selector: 'app-tabs',
@@ -16,6 +17,9 @@ import {identity, Subscription} from "rxjs";
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TabsComponent implements AfterContentInit, OnDestroy {
+
+    @ViewChild(TabHeaderComponent)
+    header: TabHeaderComponent;
     @ContentChildren(TabComponent)
     tabs: QueryList<TabComponent>;
     private _tabsSubscription = Subscription.EMPTY;
@@ -32,7 +36,8 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
         }
         this._tabsSubscription = this.tabs.changes.subscribe(() => {
             if (this.tabs.length !== 0) {
-                this.selectTab(this.tabs.last)
+                this.selectTab(this.tabs.last);
+                this.header.checkOverflow();
             }
         })
     }

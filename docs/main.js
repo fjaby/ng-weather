@@ -684,6 +684,12 @@ let NumbersOnlyDirective = class NumbersOnlyDirective {
   onPaste(event) {
     this.validateFields(event);
   }
+  onBlur(event) {
+    event.preventDefault();
+    if (!this._el.nativeElement.value) {
+      this._el.nativeElement.value = 0;
+    }
+  }
   validateFields(event) {
     event.preventDefault();
     const pasteData = event.clipboardData.getData('text/plain').replace(/[^0-9]/g, '');
@@ -700,6 +706,10 @@ let NumbersOnlyDirective = class NumbersOnlyDirective {
     onPaste: [{
       type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.HostListener,
       args: ['paste', ['$event']]
+    }],
+    onBlur: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.HostListener,
+      args: ['blur', ['$event']]
     }]
   };
 };
@@ -1051,9 +1061,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _tabs_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./tabs.component.html?ngResource */ 46);
 /* harmony import */ var _tabs_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tabs.component.css?ngResource */ 6033);
 /* harmony import */ var _tabs_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_tabs_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 1699);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 1699);
 /* harmony import */ var _tab_tab_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../tab/tab.component */ 7842);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 4614);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ 4614);
+/* harmony import */ var _tab_header_tab_header_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../tab-header/tab-header.component */ 2642);
 var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
   var c = arguments.length,
     r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
@@ -1066,10 +1077,11 @@ var __decorate = undefined && undefined.__decorate || function (decorators, targ
 
 
 
+
 let TabsComponent = class TabsComponent {
   constructor(cdRef) {
     this.cdRef = cdRef;
-    this._tabsSubscription = rxjs__WEBPACK_IMPORTED_MODULE_3__.Subscription.EMPTY;
+    this._tabsSubscription = rxjs__WEBPACK_IMPORTED_MODULE_4__.Subscription.EMPTY;
   }
   ngAfterContentInit() {
     let activeTabs = this.tabs.filter(tab => tab.active);
@@ -1080,6 +1092,7 @@ let TabsComponent = class TabsComponent {
     this._tabsSubscription = this.tabs.changes.subscribe(() => {
       if (this.tabs.length !== 0) {
         this.selectTab(this.tabs.last);
+        this.header.checkOverflow();
       }
     });
   }
@@ -1102,19 +1115,23 @@ let TabsComponent = class TabsComponent {
     tab.close();
   }
   static #_ = this.ctorParameters = () => [{
-    type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.ChangeDetectorRef
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_5__.ChangeDetectorRef
   }];
   static #_2 = this.propDecorators = {
+    header: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_5__.ViewChild,
+      args: [_tab_header_tab_header_component__WEBPACK_IMPORTED_MODULE_3__.TabHeaderComponent]
+    }],
     tabs: [{
-      type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.ContentChildren,
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_5__.ContentChildren,
       args: [_tab_tab_component__WEBPACK_IMPORTED_MODULE_2__.TabComponent]
     }]
   };
 };
-TabsComponent = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Component)({
+TabsComponent = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Component)({
   selector: 'app-tabs',
   template: _tabs_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
-  changeDetection: _angular_core__WEBPACK_IMPORTED_MODULE_4__.ChangeDetectionStrategy.OnPush,
+  changeDetection: _angular_core__WEBPACK_IMPORTED_MODULE_5__.ChangeDetectionStrategy.OnPush,
   styles: [(_tabs_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1___default())]
 })], TabsComponent);
 
@@ -1611,7 +1628,7 @@ module.exports = ___CSS_LOADER_EXPORT___.toString();
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<router-outlet></router-outlet>\n<app-snackbar></app-snackbar>\n";
+module.exports = "<router-outlet></router-outlet>\r\n<app-snackbar></app-snackbar>\r\n";
 
 /***/ }),
 
@@ -1622,7 +1639,7 @@ module.exports = "<router-outlet></router-outlet>\n<app-snackbar></app-snackbar>
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<div class=\"well\">\r\n    <h2>Cache configuration</h2>\r\n    <div class=\"options\">\r\n        <span> time to live (seconds):</span>\r\n        <input type=\"number\" [value]=\"timetoLiveValue\" #ttl appNumbersOnly\r\n               (change)=\"setTimeToLive(ttl.value)\">\r\n    </div>\r\n</div>\r\n";
+module.exports = "<div class=\"well\">\r\n    <h2>Cache configuration</h2>\r\n    <div class=\"options\">\r\n        <span> time to live (seconds):</span>\r\n        <input type=\"number\" [value]=\"timetoLiveValue\" #ttl appNumbersOnly min=\"0\"\r\n               (change)=\"setTimeToLive(ttl.value)\">\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
 
@@ -1677,7 +1694,7 @@ module.exports = "<div class=\"well\">\r\n  <h2>Enter a zipcode:</h2>\r\n  <inpu
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<div *ngIf=\"show\"\n     [ngClass]=\"['snackbar-wrap',type]\">\n    <p class=\"snackbar-text\">\n        {{message}}\n    </p>\n</div>\n";
+module.exports = "<div *ngIf=\"show\"\r\n     [ngClass]=\"['snackbar-wrap',type]\">\r\n    <p class=\"snackbar-text\">\r\n        {{message}}\r\n    </p>\r\n</div>\r\n";
 
 /***/ }),
 
@@ -1688,7 +1705,7 @@ module.exports = "<div *ngIf=\"show\"\n     [ngClass]=\"['snackbar-wrap',type]\"
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<button class=\"btn btn-primary\" *ngIf=\"scrollPosition > 0\" (click)=\"scrollPrev()\"> < </button>\n<div  class=\"tab-container\" #itemListContainer>\n    <ul class=\"nav nav-tabs tabs clearfix\"  #itemList>\n        <li *ngFor=\"let tab of tabs; trackBy:trackbyTitle\" [ngClass]=\"{'tab':true,'active':tab.active}\">\n            <div class=\"tab-header\">\n                <a (click)=\"selectTab(tab)\" href=\"#\">{{tab.title}}</a>\n                <button (click)=\"closeTab(tab)\" class=\"close\">&times;</button>\n            </div>\n        </li>\n    </ul>\n</div>\n<button class=\"btn btn-primary\" *ngIf=\"isOverflowed\" (click)=\"scrollNext()\"> > </button>\n";
+module.exports = "<button class=\"btn btn-primary\" *ngIf=\"scrollPosition > 0\" (click)=\"scrollPrev()\"> < </button>\r\n<div  class=\"tab-container\" #itemListContainer>\r\n    <ul class=\"nav nav-tabs tabs clearfix\"  #itemList>\r\n        <li *ngFor=\"let tab of tabs; trackBy:trackbyTitle\" [ngClass]=\"{'tab':true,'active':tab.active}\">\r\n            <div class=\"tab-header\">\r\n                <a (click)=\"selectTab(tab)\" href=\"#\">{{tab.title}}</a>\r\n                <button (click)=\"closeTab(tab)\" class=\"close\">&times;</button>\r\n            </div>\r\n        </li>\r\n    </ul>\r\n</div>\r\n<button class=\"btn btn-primary\" *ngIf=\"isOverflowed\" (click)=\"scrollNext()\"> > </button>\r\n";
 
 /***/ }),
 
@@ -1699,7 +1716,7 @@ module.exports = "<button class=\"btn btn-primary\" *ngIf=\"scrollPosition > 0\"
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<div [hidden]=\"!active\" class=\"pane\">\n    <ng-content></ng-content>\n</div>\n";
+module.exports = "<div [hidden]=\"!active\" class=\"pane\">\r\n    <ng-content></ng-content>\r\n</div>\r\n";
 
 /***/ }),
 
